@@ -1,0 +1,1184 @@
+[
+  {
+    "x": 73,
+    "y": 220,
+    "z": 32,
+    "name": "minecraft:polished_andesite"
+  },
+  {
+    "x": 73,
+    "y": 220,
+    "z": 33,
+    "name": "minecraft:polished_andesite"
+  },
+  {
+    "x": 22,
+    "y": 165,
+    "z": 73,
+    "name": "minecraft:polished_andesite"
+  },
+  {
+    "x": 21,
+    "y": 166,
+    "z": 73,
+    "name": "minecraft:stone"
+  },
+  {
+    "x": 21,
+    "y": 165,
+    "z": 73,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 20,
+    "y": 166,
+    "z": 73,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 20,
+    "y": 165,
+    "z": 73,
+    "name": "minecraft:mossy_stone_bricks"
+  },
+  {
+    "x": 19,
+    "y": 166,
+    "z": 73,
+    "name": "minecraft:cyan_terracotta"
+  },
+  {
+    "x": 19,
+    "y": 165,
+    "z": 73,
+    "name": "minecraft:cyan_terracotta"
+  },
+  {
+    "x": 18,
+    "y": 166,
+    "z": 73,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 18,
+    "y": 165,
+    "z": 73,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 17,
+    "y": 166,
+    "z": 73,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 17,
+    "y": 165,
+    "z": 73,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 16,
+    "y": 166,
+    "z": 73,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 16,
+    "y": 165,
+    "z": 73,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 15,
+    "y": 166,
+    "z": 73,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 15,
+    "y": 165,
+    "z": 73,
+    "name": "minecraft:mossy_stone_bricks"
+  },
+  {
+    "x": 14,
+    "y": 166,
+    "z": 73,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 14,
+    "y": 165,
+    "z": 73,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 13,
+    "y": 166,
+    "z": 73,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 13,
+    "y": 165,
+    "z": 73,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 12,
+    "y": 166,
+    "z": 73,
+    "name": "minecraft:dirt"
+  },
+  {
+    "x": 12,
+    "y": 165,
+    "z": 73,
+    "name": "minecraft:dirt"
+  },
+  {
+    "x": 12,
+    "y": 164,
+    "z": 73,
+    "name": "minecraft:dirt"
+  },
+  {
+    "x": 12,
+    "y": 163,
+    "z": 73,
+    "name": "minecraft:dirt"
+  },
+  {
+    "x": 12,
+    "y": 162,
+    "z": 73,
+    "name": "minecraft:dirt"
+  },
+  {
+    "x": 12,
+    "y": 161,
+    "z": 73,
+    "name": "minecraft:dirt"
+  },
+  {
+    "x": 12,
+    "y": 160,
+    "z": 73,
+    "name": "minecraft:air"
+  },
+  {
+    "x": 12,
+    "y": 159,
+    "z": 73,
+    "name": "minecraft:dirt"
+  },
+  {
+    "x": 12,
+    "y": 158,
+    "z": 73,
+    "name": "minecraft:stone"
+  },
+  {
+    "x": 12,
+    "y": 157,
+    "z": 73,
+    "name": "minecraft:stone"
+  },
+  {
+    "x": 12,
+    "y": 156,
+    "z": 73,
+    "name": "minecraft:stone"
+  },
+  {
+    "x": 12,
+    "y": 155,
+    "z": 73,
+    "name": "minecraft:stone"
+  },
+  {
+    "x": 12,
+    "y": 154,
+    "z": 73,
+    "name": "minecraft:stone"
+  },
+  {
+    "x": 12,
+    "y": 153,
+    "z": 73,
+    "name": "minecraft:stone"
+  },
+  {
+    "x": 12,
+    "y": 152,
+    "z": 73,
+    "name": "minecraft:stone"
+  },
+  {
+    "x": 12,
+    "y": 151,
+    "z": 73,
+    "name": "minecraft:stone"
+  },
+  {
+    "x": 12,
+    "y": 150,
+    "z": 73,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 12,
+    "y": 149,
+    "z": 73,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 12,
+    "y": 148,
+    "z": 73,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 12,
+    "y": 147,
+    "z": 73,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": -2,
+    "y": 120,
+    "z": 81,
+    "name": "minecraft:acacia_log"
+  },
+  {
+    "x": -2,
+    "y": 120,
+    "z": 82,
+    "name": "minecraft:cyan_terracotta"
+  },
+  {
+    "x": -2,
+    "y": 120,
+    "z": 83,
+    "name": "minecraft:cyan_terracotta"
+  },
+  {
+    "x": -2,
+    "y": 120,
+    "z": 84,
+    "name": "minecraft:cyan_terracotta"
+  },
+  {
+    "x": -2,
+    "y": 120,
+    "z": 85,
+    "name": "minecraft:cracked_stone_bricks"
+  },
+  {
+    "x": -2,
+    "y": 119,
+    "z": 81,
+    "name": "minecraft:acacia_log"
+  },
+  {
+    "x": -2,
+    "y": 119,
+    "z": 82,
+    "name": "minecraft:cyan_terracotta"
+  },
+  {
+    "x": -2,
+    "y": 119,
+    "z": 83,
+    "name": "minecraft:cyan_terracotta"
+  },
+  {
+    "x": -2,
+    "y": 119,
+    "z": 84,
+    "name": "minecraft:cyan_terracotta"
+  },
+  {
+    "x": -2,
+    "y": 119,
+    "z": 85,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": -2,
+    "y": 119,
+    "z": 86,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": -2,
+    "y": 119,
+    "z": 87,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": -2,
+    "y": 120,
+    "z": 86,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": -2,
+    "y": 120,
+    "z": 87,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": -2,
+    "y": 119,
+    "z": 90,
+    "name": "minecraft:acacia_log"
+  },
+  {
+    "x": -2,
+    "y": 119,
+    "z": 91,
+    "name": "minecraft:stone_brick_slab"
+  },
+  {
+    "x": -2,
+    "y": 120,
+    "z": 90,
+    "name": "minecraft:acacia_log"
+  },
+  {
+    "x": 16,
+    "y": 115,
+    "z": 127,
+    "name": "minecraft:polished_andesite"
+  },
+  {
+    "x": 16,
+    "y": 116,
+    "z": 127,
+    "name": "minecraft:polished_andesite"
+  },
+  {
+    "x": 17,
+    "y": 115,
+    "z": 127,
+    "name": "minecraft:cracked_stone_bricks"
+  },
+  {
+    "x": 17,
+    "y": 116,
+    "z": 127,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 18,
+    "y": 115,
+    "z": 127,
+    "name": "minecraft:nether_bricks"
+  },
+  {
+    "x": 18,
+    "y": 116,
+    "z": 127,
+    "name": "minecraft:nether_bricks"
+  },
+  {
+    "x": 105,
+    "y": 116,
+    "z": 124,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 105,
+    "y": 116,
+    "z": 123,
+    "name": "minecraft:cracked_stone_bricks"
+  },
+  {
+    "x": 105,
+    "y": 116,
+    "z": 122,
+    "name": "minecraft:nether_bricks"
+  },
+  {
+    "x": 105,
+    "y": 115,
+    "z": 124,
+    "name": "minecraft:stone"
+  },
+  {
+    "x": 105,
+    "y": 115,
+    "z": 123,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 105,
+    "y": 115,
+    "z": 122,
+    "name": "minecraft:nether_bricks"
+  },
+  {
+    "x": 91,
+    "y": 166,
+    "z": 41,
+    "name": "minecraft:coal_block"
+  },
+  {
+    "x": 92,
+    "y": 166,
+    "z": 41,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 93,
+    "y": 166,
+    "z": 41,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 94,
+    "y": 166,
+    "z": 41,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 95,
+    "y": 166,
+    "z": 41,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 91,
+    "y": 165,
+    "z": 41,
+    "name": "minecraft:coal_block"
+  },
+  {
+    "x": 92,
+    "y": 165,
+    "z": 41,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 93,
+    "y": 165,
+    "z": 41,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 94,
+    "y": 165,
+    "z": 41,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 95,
+    "y": 165,
+    "z": 41,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 92,
+    "y": 116,
+    "z": 47,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 91,
+    "y": 116,
+    "z": 47,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 90,
+    "y": 116,
+    "z": 47,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 90,
+    "y": 115,
+    "z": 47,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 89,
+    "y": 115,
+    "z": 47,
+    "name": "minecraft:stone_brick_stairs"
+  },
+  {
+    "x": 89,
+    "y": 116,
+    "z": 47,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 91,
+    "y": 115,
+    "z": 47,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 92,
+    "y": 115,
+    "z": 47,
+    "name": "minecraft:cracked_stone_bricks"
+  },
+  {
+    "x": 92,
+    "y": 115,
+    "z": 46,
+    "name": "minecraft:cracked_stone_bricks"
+  },
+  {
+    "x": 91,
+    "y": 115,
+    "z": 46,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 90,
+    "y": 115,
+    "z": 46,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 92,
+    "y": 116,
+    "z": 46,
+    "name": "minecraft:stone_brick_stairs"
+  },
+  {
+    "x": 91,
+    "y": 116,
+    "z": 46,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 89,
+    "y": 115,
+    "z": 46,
+    "name": "minecraft:nether_bricks"
+  },
+  {
+    "x": 90,
+    "y": 116,
+    "z": 46,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 89,
+    "y": 116,
+    "z": 46,
+    "name": "minecraft:nether_bricks"
+  },
+  {
+    "x": 57,
+    "y": 115,
+    "z": 118,
+    "name": "minecraft:cyan_terracotta"
+  },
+  {
+    "x": 57,
+    "y": 115,
+    "z": 119,
+    "name": "minecraft:stone"
+  },
+  {
+    "x": 57,
+    "y": 115,
+    "z": 120,
+    "name": "minecraft:cracked_stone_bricks"
+  },
+  {
+    "x": 57,
+    "y": 115,
+    "z": 121,
+    "name": "minecraft:diorite"
+  },
+  {
+    "x": 57,
+    "y": 114,
+    "z": 118,
+    "name": "minecraft:cyan_terracotta"
+  },
+  {
+    "x": 57,
+    "y": 114,
+    "z": 119,
+    "name": "minecraft:stone"
+  },
+  {
+    "x": 57,
+    "y": 114,
+    "z": 120,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 57,
+    "y": 114,
+    "z": 121,
+    "name": "minecraft:diorite"
+  },
+  {
+    "x": 51,
+    "y": 113,
+    "z": 111,
+    "name": "minecraft:gold_block"
+  },
+  {
+    "x": 51,
+    "y": 113,
+    "z": 110,
+    "name": "minecraft:stone_brick_stairs"
+  },
+  {
+    "x": 51,
+    "y": 113,
+    "z": 112,
+    "name": "minecraft:gold_block"
+  },
+  {
+    "x": 58,
+    "y": 125,
+    "z": 121,
+    "name": "minecraft:diorite"
+  },
+  {
+    "x": 58,
+    "y": 124,
+    "z": 121,
+    "name": "minecraft:diorite"
+  },
+  {
+    "x": 57,
+    "y": 125,
+    "z": 121,
+    "name": "minecraft:diorite"
+  },
+  {
+    "x": 57,
+    "y": 124,
+    "z": 121,
+    "name": "minecraft:diorite"
+  },
+  {
+    "x": 57,
+    "y": 125,
+    "z": 120,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 57,
+    "y": 125,
+    "z": 119,
+    "name": "minecraft:stone"
+  },
+  {
+    "x": 57,
+    "y": 125,
+    "z": 118,
+    "name": "minecraft:cyan_terracotta"
+  },
+  {
+    "x": 57,
+    "y": 124,
+    "z": 118,
+    "name": "minecraft:cyan_terracotta"
+  },
+  {
+    "x": 57,
+    "y": 124,
+    "z": 120,
+    "name": "minecraft:stone"
+  },
+  {
+    "x": 57,
+    "y": 124,
+    "z": 119,
+    "name": "minecraft:stone"
+  },
+  {
+    "x": 52,
+    "y": 115,
+    "z": 122,
+    "name": "minecraft:acacia_wood"
+  },
+  {
+    "x": 52,
+    "y": 115,
+    "z": 121,
+    "name": "minecraft:diorite"
+  },
+  {
+    "x": 52,
+    "y": 115,
+    "z": 120,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 52,
+    "y": 115,
+    "z": 119,
+    "name": "minecraft:stone"
+  },
+  {
+    "x": 52,
+    "y": 115,
+    "z": 118,
+    "name": "minecraft:cyan_terracotta"
+  },
+  {
+    "x": 52,
+    "y": 114,
+    "z": 121,
+    "name": "minecraft:diorite"
+  },
+  {
+    "x": 52,
+    "y": 114,
+    "z": 120,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 52,
+    "y": 114,
+    "z": 119,
+    "name": "minecraft:stone"
+  },
+  {
+    "x": 52,
+    "y": 114,
+    "z": 118,
+    "name": "minecraft:cyan_terracotta"
+  },
+  {
+    "x": 52,
+    "y": 114,
+    "z": 122,
+    "name": "minecraft:acacia_wood"
+  },
+  {
+    "x": 35,
+    "y": 108,
+    "z": 128,
+    "name": "minecraft:stone_brick_stairs"
+  },
+  {
+    "x": 34,
+    "y": 108,
+    "z": 128,
+    "name": "minecraft:stone_brick_stairs"
+  },
+  {
+    "x": 34,
+    "y": 107,
+    "z": 128,
+    "name": "minecraft:stone_brick_stairs"
+  },
+  {
+    "x": 34,
+    "y": 107,
+    "z": 127,
+    "name": "minecraft:stone_brick_stairs"
+  },
+  {
+    "x": 33,
+    "y": 107,
+    "z": 127,
+    "name": "minecraft:polished_andesite"
+  },
+  {
+    "x": 35,
+    "y": 107,
+    "z": 128,
+    "name": "minecraft:stone_brick_stairs"
+  },
+  {
+    "x": 52,
+    "y": 118,
+    "z": 122,
+    "name": "minecraft:acacia_wood"
+  },
+  {
+    "x": 52,
+    "y": 117,
+    "z": 122,
+    "name": "minecraft:acacia_wood"
+  },
+  {
+    "x": 52,
+    "y": 119,
+    "z": 122,
+    "name": "minecraft:acacia_wood"
+  },
+  {
+    "x": 52,
+    "y": 120,
+    "z": 122,
+    "name": "minecraft:acacia_wood"
+  },
+  {
+    "x": 52,
+    "y": 116,
+    "z": 122,
+    "name": "minecraft:acacia_wood"
+  },
+  {
+    "x": 42,
+    "y": 125,
+    "z": 125,
+    "name": "minecraft:cyan_terracotta"
+  },
+  {
+    "x": 43,
+    "y": 125,
+    "z": 124,
+    "name": "minecraft:cyan_terracotta"
+  },
+  {
+    "x": 43,
+    "y": 124,
+    "z": 124,
+    "name": "minecraft:cyan_terracotta"
+  },
+  {
+    "x": 42,
+    "y": 124,
+    "z": 125,
+    "name": "minecraft:cyan_terracotta"
+  },
+  {
+    "x": 43,
+    "y": 124,
+    "z": 125,
+    "name": "minecraft:cyan_terracotta"
+  },
+  {
+    "x": 43,
+    "y": 125,
+    "z": 125,
+    "name": "minecraft:cyan_terracotta"
+  },
+  {
+    "x": 48,
+    "y": 121,
+    "z": 121,
+    "name": "minecraft:black_terracotta"
+  },
+  {
+    "x": 48,
+    "y": 121,
+    "z": 120,
+    "name": "minecraft:cracked_stone_bricks"
+  },
+  {
+    "x": 48,
+    "y": 121,
+    "z": 119,
+    "name": "minecraft:stone"
+  },
+  {
+    "x": 48,
+    "y": 121,
+    "z": 118,
+    "name": "minecraft:stone"
+  },
+  {
+    "x": 48,
+    "y": 121,
+    "z": 117,
+    "name": "minecraft:stone"
+  },
+  {
+    "x": 48,
+    "y": 120,
+    "z": 121,
+    "name": "minecraft:black_terracotta"
+  },
+  {
+    "x": 48,
+    "y": 120,
+    "z": 120,
+    "name": "minecraft:mossy_stone_bricks"
+  },
+  {
+    "x": 48,
+    "y": 120,
+    "z": 119,
+    "name": "minecraft:stone"
+  },
+  {
+    "x": 48,
+    "y": 120,
+    "z": 118,
+    "name": "minecraft:stone"
+  },
+  {
+    "x": 48,
+    "y": 120,
+    "z": 117,
+    "name": "minecraft:stone"
+  },
+  {
+    "x": 49,
+    "y": 121,
+    "z": 117,
+    "name": "minecraft:acacia_wood"
+  },
+  {
+    "x": 49,
+    "y": 120,
+    "z": 117,
+    "name": "minecraft:acacia_wood"
+  },
+  {
+    "x": 18,
+    "y": 121,
+    "z": 91,
+    "name": "minecraft:stone_brick_slab"
+  },
+  {
+    "x": 18,
+    "y": 119,
+    "z": 91,
+    "name": "minecraft:stone_brick_slab"
+  },
+  {
+    "x": 18,
+    "y": 117,
+    "z": 91,
+    "name": "minecraft:cobblestone_wall"
+  },
+  {
+    "x": 18,
+    "y": 124,
+    "z": 90,
+    "name": "minecraft:acacia_log"
+  },
+  {
+    "x": 18,
+    "y": 123,
+    "z": 90,
+    "name": "minecraft:acacia_log"
+  },
+  {
+    "x": 18,
+    "y": 125,
+    "z": 90,
+    "name": "minecraft:acacia_log"
+  },
+  {
+    "x": 15,
+    "y": 123,
+    "z": 89,
+    "name": "minecraft:chiseled_quartz_block"
+  },
+  {
+    "x": 14,
+    "y": 123,
+    "z": 89,
+    "name": "minecraft:chiseled_quartz_block"
+  },
+  {
+    "x": 15,
+    "y": 123,
+    "z": 88,
+    "name": "minecraft:chiseled_quartz_block"
+  },
+  {
+    "x": 14,
+    "y": 123,
+    "z": 88,
+    "name": "minecraft:chiseled_quartz_block"
+  },
+  {
+    "x": 55,
+    "y": 120,
+    "z": 124,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 56,
+    "y": 120,
+    "z": 125,
+    "name": "minecraft:chiseled_quartz_block"
+  },
+  {
+    "x": 55,
+    "y": 120,
+    "z": 125,
+    "name": "minecraft:chiseled_quartz_block"
+  },
+  {
+    "x": 55,
+    "y": 121,
+    "z": 124,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 54,
+    "y": 120,
+    "z": 124,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 53,
+    "y": 120,
+    "z": 124,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 53,
+    "y": 121,
+    "z": 124,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 54,
+    "y": 121,
+    "z": 124,
+    "name": "minecraft:mossy_stone_bricks"
+  },
+  {
+    "x": 54,
+    "y": 116,
+    "z": 54,
+    "name": "minecraft:gold_block"
+  },
+  {
+    "x": 54,
+    "y": 115,
+    "z": 54,
+    "name": "minecraft:gold_block"
+  },
+  {
+    "x": -2,
+    "y": 111,
+    "z": 91,
+    "name": "minecraft:cobblestone_wall"
+  },
+  {
+    "x": -2,
+    "y": 117,
+    "z": 91,
+    "name": "minecraft:cobblestone_wall"
+  },
+  {
+    "x": 84,
+    "y": 120,
+    "z": 35,
+    "name": "minecraft:gray_carpet"
+  },
+  {
+    "x": 85,
+    "y": 120,
+    "z": 35,
+    "name": "minecraft:gray_carpet"
+  },
+  {
+    "x": 84,
+    "y": 119,
+    "z": 35,
+    "name": "minecraft:gold_block"
+  },
+  {
+    "x": 85,
+    "y": 119,
+    "z": 35,
+    "name": "minecraft:gold_block"
+  },
+  {
+    "x": 2,
+    "y": 108,
+    "z": 107,
+    "name": "minecraft:polished_andesite"
+  },
+  {
+    "x": 18,
+    "y": 122,
+    "z": 127,
+    "name": "minecraft:nether_bricks"
+  },
+  {
+    "x": 18,
+    "y": 121,
+    "z": 127,
+    "name": "minecraft:nether_bricks"
+  },
+  {
+    "x": 17,
+    "y": 121,
+    "z": 127,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 17,
+    "y": 122,
+    "z": 127,
+    "name": "minecraft:stone_bricks"
+  },
+  {
+    "x": 16,
+    "y": 122,
+    "z": 127,
+    "name": "minecraft:polished_andesite"
+  },
+  {
+    "x": 16,
+    "y": 121,
+    "z": 127,
+    "name": "minecraft:polished_andesite"
+  },
+  {
+    "x": 4,
+    "y": 115,
+    "z": 118,
+    "name": "minecraft:chiseled_quartz_block"
+  },
+  {
+    "x": 4,
+    "y": 115,
+    "z": 119,
+    "name": "minecraft:chiseled_quartz_block"
+  },
+  {
+    "x": 5,
+    "y": 115,
+    "z": 119,
+    "name": "minecraft:chiseled_quartz_block"
+  },
+  {
+    "x": 5,
+    "y": 115,
+    "z": 118,
+    "name": "minecraft:chiseled_quartz_block"
+  },
+  {
+    "x": 5,
+    "y": 114,
+    "z": 119,
+    "name": "minecraft:quartz_stairs"
+  },
+  {
+    "x": 4,
+    "y": 114,
+    "z": 119,
+    "name": "minecraft:quartz_stairs"
+  },
+  {
+    "x": 4,
+    "y": 114,
+    "z": 118,
+    "name": "minecraft:quartz_stairs"
+  },
+  {
+    "x": 5,
+    "y": 114,
+    "z": 118,
+    "name": "minecraft:quartz_stairs"
+  }
+]

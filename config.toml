@@ -1,0 +1,44 @@
+
+[p3]
+	p3_messages = true
+	i4_minimum_rotation_time = "120"
+	s2_dev_big_levers = false
+	autop3_switch = false
+	auto4 = true
+	icant4 = true
+	ring_blueness = "255"
+	default_p3_config = "rndstops"
+	ring_greenness = "0"
+	terminal_open_triggerbot = false
+	p3_lever_aura = false
+	ring_radius = "1"
+	auto_i4_leap = false
+	ring_redness = "255"
+	"i4_rotation_time_variaton(minimum_rot_time_+_this_is_the_maximum,_it_can_get_any_time_between_those_2)" = "50"
+	auto_immunuity_swap = true
+
+[p5]
+	relic_place_triggerbot = false
+	"relic_ghostblocks(purple_only_atm)" = false
+	relic_autoleap = false
+
+[sim]
+	lava_bounce_simulation = true
+	500_speed_simulation = true
+
+[dungeons]
+	auto_icefill_walker = true
+
+	[dungeons.db_nuker]
+		dungeonbreaker_nuker = false
+		nuker_autoswap = true
+		swing_hand_while_nuking = true
+		remove_block_clientside = false
+		dungeonbreaker_autoswap = false
+		dungeonbreaker_nuker_render = false
+
+[misc]
+	spinbot = false
+	spin_speed = 252
+	debug_messages = false
+

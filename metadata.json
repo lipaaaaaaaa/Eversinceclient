@@ -1,0 +1,8 @@
+{
+	"name": "§bEversince",
+	"description": "Your blood tastes so sweet Like sugar, baby",
+	"creator": "Chloe, Deepseek, Claude, Qwen, Gemini",
+	"version": "0.1.4",
+	"entry": "index.js",
+	"requires": ["Vigilance"]
+}
