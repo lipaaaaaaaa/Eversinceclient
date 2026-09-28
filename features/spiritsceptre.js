@@ -283,8 +283,11 @@ register("tick", () => {
 });
 
 // Safety: stop tracking on logout / world change so stale state doesn't linger.
-// Note: the correct trigger name in this event system is "gameExit" (fires when
-// leaving a server / closing the world) — there is no "serverLeave" trigger.
-register("gameExit", () => {
-    disarmQuest("left server");
+// Note: valid ChatTriggers trigger types are things like "worldLoad", "tick",
+// "chat", etc. There is NO "gameExit" trigger (nor "serverLeave") — registering
+// one throws NoSuchMethodException and breaks module loading. "worldLoad" fires
+// whenever a new world/server session begins, which covers leaving a server
+// (the old quest state must not carry over into the new world).
+register("worldLoad", () => {
+    disarmQuest("world change / left server");
 });
