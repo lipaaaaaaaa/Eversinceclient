@@ -1,4 +1,8 @@
 
+[general]
+	spinbot = false
+	"chat_bypass(font_chat)" = false
+
 [p3]
 	p3_messages = true
 	i4_minimum_rotation_time = "120"
@@ -38,7 +42,9 @@
 		dungeonbreaker_nuker_render = false
 
 [misc]
+	small_caps_chat = true
 	spinbot = false
 	spin_speed = 252
+	"chat_bypass(font_chat)" = false
 	debug_messages = false
 

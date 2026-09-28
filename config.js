@@ -14,7 +14,7 @@ class Settings {
 	
 	@SwitchProperty({name: "Debug Messages",
 	description: "Toggle this whether or not you want to see the debug messages",
-	category: "misc"}) debugmsg = false;
+	category: "Misc"}) debugmsg = false;
 	
 	@SwitchProperty({name: "Terminal open triggerbot",
 	description: "Automatically clicks a terminal when looking at it",
@@ -23,11 +23,11 @@ class Settings {
 	
 	@SwitchProperty({name: "SpinBot",
 	description: "Serverside yaw spinbot silent rotates",
-	category: "Misc"}) spinbot = false;	
+	category: "General"}) spinbot = false;	
 
-	@SwitchProperty({name: "Small Caps Chat",
-	description: "Cancels every message you send and re-sends it with the latin alphabet replaced by small caps (a-z -> ᴀ-ᴢ). Commands are not affected.",
-	category: "Misc"}) smallcapschat = false;
+	@SwitchProperty({name: "Chat bypass(font chat)",
+	description: "Cancels every message you send and re-sends it with the latin alphabet replaced by small caps (a-z -> ᴀ-ᴢ). Commands are not affected. ᴛʜᴇ ǫᴜɪᴄᴋ ʙʀᴏᴡɴ ғᴏx ᴊᴜᴍᴘs ᴏᴠᴇʀ ᴛʜᴇ ʟᴀᴢʏ ʙʀᴏᴡɴ ᴅᴏɢ",
+	category: "General"}) smallcapschat = false;
 
 /*
     @SliderProperty({
