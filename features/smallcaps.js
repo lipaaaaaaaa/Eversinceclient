@@ -1,27 +1,27 @@
 // smallcaps.js — ChatTriggers 3.0 (Fabric 1.21.10)
 // Toggled by Settings.smallcapschat ("Small Caps Chat" in Misc).
 // When on, any plain chat message you send is cancelled and re-sent with the
-// latin alphabet replaced by small caps glyphs. Commands (/...) are left
+// latin alphabet replaced by fullwidth glyphs. Commands (/...) are left
 // alone so they don't get mangled.
 
 import Settings from "../config"
 import { debugp } from "../utils"
 
 const smallCapsMap = {
-    'a': 'ᴀ', 'b': 'ʙ', 'c': 'ᴄ', 'd': 'ᴅ', 'e': 'ᴇ',
-    'f': 'ғ', 'g': 'ɢ', 'h': 'ʜ', 'i': 'ɪ', 'j': 'ᴊ',
-    'k': 'ᴋ', 'l': 'ʟ', 'm': 'ᴍ', 'n': 'ɴ', 'o': 'ᴏ',
-    'p': 'ᴘ', 'q': 'ǫ', 'r': 'ʀ', 's': 's', 't': 'ᴛ',
-    'u': 'ᴜ', 'v': 'ᴠ', 'w': 'ᴡ', 'x': 'x', 'y': 'ʏ', 'z': 'ᴢ'
-}
+    'a': 'ａ', 'b': 'ｂ', 'c': 'ｃ', 'd': 'ｄ', 'e': 'ｅ',
+    'f': 'ｆ', 'g': 'ｇ', 'h': 'ｈ', 'i': 'ｉ', 'j': 'ｊ',
+    'k': 'ｋ', 'l': 'ｌ', 'm': 'ｍ', 'n': 'ｎ', 'o': 'ｏ',
+    'p': 'ｐ', 'q': 'ｑ', 'r': 'ｒ', 's': 'ｓ', 't': 'ｔ',
+    'u': 'ｕ', 'v': 'ｖ', 'w': 'ｗ', 'x': 'ｘ', 'y': 'ｙ', 'z': 'ｚ'
+};
 
+/**
+ * Converts standard English letters in a string to fullwidth characters.
+ * @param {string} text The input string to convert.
+ * @returns {string} The formatted string.
+ */
 function toSmallCaps(text) {
-    let out = ""
-    for (const char of text) {
-        const mapped = smallCapsMap[char.toLowerCase()]
-        out += mapped !== undefined ? mapped : char
-    }
-    return out
+    return text.replace(/[a-z]/gi, char => smallCapsMap[char.toLowerCase()] || char);
 }
 
 let resending = false // guard so our own re-send doesn't get intercepted again
@@ -37,10 +37,11 @@ register("messageSent", (message, event) => {
 
     resending = true
     try {
+      //  ChatLib.chat(converted)
         ChatLib.say(converted)
         debugp(`smallcaps: sent "${converted}"`)
     } catch (e) {
-        debugp(`smallcaps: say() failed (${e})`)
+      ChatLib.chat(`smallcaps fired: ${message}`)
     } finally {
         resending = false
     }
