@@ -1,7 +1,7 @@
-/// <reference types="../../CTAutocomplete" />
+/// <reference types="./CTAutocomplete" />
 
-import Settings from "../config";
-import { p } from "../utils";
+import Settings from "./config";
+import { p } from "./utils";
 
 let rotTargetYaw = null;
 let rotTargetPitch = null;
