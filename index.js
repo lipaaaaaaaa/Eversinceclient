@@ -11,6 +11,7 @@ import "./features/test"
 import "./features/stopring"
 import "./features/spin"
 import "./features/trapper"
+import "./features/smallcaps"
 
 
 p("loaded")
