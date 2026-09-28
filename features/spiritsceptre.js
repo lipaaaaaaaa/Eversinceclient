@@ -15,7 +15,7 @@ import Settings from "../config";
 import { p, debugp, swapToItem, getDistance3D } from "../utils";
 import { startSmoothRotation, cancelRotation, isRotating } from "../Rotations";
 
-const Entity = Java.type("net.minecraft.class_1297"); // living entity base (yarn)
+const LivingEntityCls = Java.type("net.minecraft.class_1297"); // living entity base (yarn)
 
 // ─── Quest state ──────────────────────────────────────────────────────────────
 
@@ -136,7 +136,7 @@ function findTargetMob() {
     const entities = world.getEntities();
     for (let i = 0; i < entities.size(); i++) {
         const ent = entities.get(i);
-        if (!(ent instanceof Entity)) continue;
+        if (!(ent instanceof LivingEntityCls)) continue;
         if (ent === player) continue;
         try {
             if (ent.isRemoved()) continue; // skip despawned/dead mobs
