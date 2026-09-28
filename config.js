@@ -25,6 +25,10 @@ class Settings {
 	description: "Serverside yaw spinbot silent rotates",
 	category: "Misc"}) spinbot = false;	
 
+	@SwitchProperty({name: "Small Caps Chat",
+	description: "Cancels every message you send and re-sends it with the latin alphabet replaced by small caps (a-z -> ᴀ-ᴢ). Commands are not affected.",
+	category: "Misc"}) smallcapschat = false;
+
 /*
     @SliderProperty({
         name: "Spin Speed",
