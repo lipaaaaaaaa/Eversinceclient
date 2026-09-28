@@ -24,6 +24,16 @@ class Settings {
 	@SwitchProperty({name: "SpinBot",
 	description: "Serverside yaw spinbot silent rotates",
 	category: "Misc"}) spinbot = false;	
+
+	@SwitchProperty({name: "Auto Spirit Sceptre",
+	description: "After starting a Trevor the Trapper quest, tracks the pelt mob's position and once you get close enough swaps to your Spirit Sceptre, rotates to it and right-clicks",
+	category: "P3"}) autospirit = false;
+
+	@NumberProperty({name: "Spirit Sceptre Range",
+	description: "Distance in blocks to the pelt mob before Auto Spirit Sceptre fires",
+	category: "P3",
+	min: 1,
+	max: 50}) sceptredist = 20;
 /*
     @SliderProperty({
         name: "Spin Speed",
