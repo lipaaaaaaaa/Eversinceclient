@@ -282,7 +282,9 @@ register("tick", () => {
     }
 });
 
-// Safety: stop tracking on logout / world change so stale state doesn't linger
-register("serverLeave", () => {
+// Safety: stop tracking on logout / world change so stale state doesn't linger.
+// Note: the correct trigger name in this event system is "gameExit" (fires when
+// leaving a server / closing the world) — there is no "serverLeave" trigger.
+register("gameExit", () => {
     disarmQuest("left server");
 });
