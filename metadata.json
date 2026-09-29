@@ -2,7 +2,7 @@
 	"name": "§bEversince",
 	"description": "Your blood tastes so sweet Like sugar, baby",
 	"creator": "Chloe, Deepseek, Claude, Qwen, Gemini",
-	"version": "0.1.4",
+	"version": "0.1.5",
 	"entry": "index.js",
 	"requires": ["Vigilance"]
 }

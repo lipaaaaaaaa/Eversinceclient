@@ -12,7 +12,9 @@ import "./features/stopring"
 import "./features/spin"
 import "./features/trapper"
 import "./features/smallcaps"
-
+import "./features/cc"
+/*import "./IceFill"
+import "./features/sim"*/
 
 p("loaded")
 
@@ -27,8 +29,6 @@ register("chat", (e) => {
 register("chat", (e) => {
     cancel(e)
 }).setCriteria("You do not have the key for this door!")
-
-
 
 register("chat", (e) => {
     cancel(e)

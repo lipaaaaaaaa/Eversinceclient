@@ -1,4 +1,4 @@
-/// <reference types="./CTAutocomplete" />
+/// 
 
 import Settings from "./config";
 import { p } from "./utils";
@@ -54,7 +54,7 @@ export function cancelRotation() {
     rotationFinishCallback = null;
 }
 
-// Bézier easing (unchanged)
+// Bézier easing
 function bezierEasing(x, x1, y1, x2, y2) {
     if (x <= 0) return 0;
     if (x >= 1) return 1;
@@ -93,8 +93,11 @@ function randomBezierControlPoints() {
 
 export function startSmoothRotation(yaw, pitch, durationMs, onFinish, noJitter) {
     const player = Player.getPlayer();
-    const startYaw = player.getYaw();
-    const startPitch = player.getPitch();
+    if (!player) return;
+
+    // Mojmap: getYaw() -> getYRot(), getPitch() -> getXRot()
+    const startYaw = player.getYRot();
+    const startPitch = player.getXRot();
 
     let dy = (yaw - startYaw) % 360;
     if (dy > 180) dy -= 360;
@@ -105,8 +108,9 @@ export function startSmoothRotation(yaw, pitch, durationMs, onFinish, noJitter) 
     const totalDist = Math.sqrt(dy * dy + dp * dp);
 
     if (totalDist < 0.01) {
-        player.setYaw(targetYawBase);
-        player.setPitch(targetPitchBase);
+        // Mojmap: setYaw() -> setYRot(), setPitch() -> setXRot()
+        player.setYRot(targetYawBase);
+        player.setXRot(targetPitchBase);
         if (onFinish) onFinish();
         return;
     }
@@ -291,12 +295,15 @@ register("renderWorld", function (partialTicks) {
         }
 
         const player = Player.getPlayer();
-        player.setYaw(baseYaw + jitterYaw);
-        player.setPitch(basePitch + jitterPitch);
+        if (!player) return;
+
+        // Mojmap: setYaw() -> setYRot(), setPitch() -> setXRot()
+        player.setYRot(baseYaw + jitterYaw);
+        player.setXRot(basePitch + jitterPitch);
 
         if (rawProgress >= 1) {
-            player.setYaw(rotTargetYaw);
-            player.setPitch(rotTargetPitch);
+            player.setYRot(rotTargetYaw);
+            player.setXRot(rotTargetPitch);
             rotTargetYaw = null;
             rotTargetPitch = null;
 

@@ -26,8 +26,12 @@ class Settings {
 	category: "General"}) spinbot = false;	
 
 	@SwitchProperty({name: "Chat bypass(font chat)",
-	description: "Cancels every message you send and re-sends it with the latin alphabet replaced by small caps (a-z -> ᴀ-ᴢ). Commands are not affected. ᴛʜᴇ ǫᴜɪᴄᴋ ʙʀᴏᴡɴ ғᴏx ᴊᴜᴍᴘs ᴏᴠᴇʀ ᴛʜᴇ ʟᴀᴢʏ ʙʀᴏᴡɴ ᴅᴏɢ",
+	description: "Cancels every message you send and re-sends it with the latin alphabet replaced by small caps (a-z -> ａ-ｚ). Commands are not affected.ｔｈｅ ｑｕｉｃｋ ｂｒｏｗｎ ｆｏｘ ｊｕｍｐｓ ｏｖｅｒ ｔｈｅ ｌａｚｙ ｄｏｇ",
 	category: "General"}) smallcapschat = false;
+
+	@SwitchProperty({name: "Chat cleaner",
+	description: "Chat cleaner",
+	category: "General"}) chatclean = false;
 
 /*
     @SliderProperty({

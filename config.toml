@@ -2,6 +2,9 @@
 [general]
 	spinbot = false
 	"chat_bypass(font_chat)" = false
+	simulate_lavabounce = false
+	simulate_speed = true
+	chat_cleaner = true
 
 [p3]
 	p3_messages = true
@@ -13,7 +16,7 @@
 	ring_blueness = "255"
 	default_p3_config = "rndstops"
 	ring_greenness = "0"
-	terminal_open_triggerbot = false
+	terminal_open_triggerbot = true
 	p3_lever_aura = false
 	ring_radius = "1"
 	auto_i4_leap = false
@@ -46,5 +49,5 @@
 	spinbot = false
 	spin_speed = 252
 	"chat_bypass(font_chat)" = false
-	debug_messages = false
+	debug_messages = true
 

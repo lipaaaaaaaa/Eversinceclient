@@ -1,6 +1,8 @@
 import Settings from "./config";
-const KeyBinding = Java.type("net.minecraft.client.settings.KeyBinding");
-const PlayerInteractItemC2SPacket = Java.type("net.minecraft.class_2886")
+const InteractionHand = Java.type("net.minecraft.world.InteractionHand");
+const ServerboundUseItemPacket = Java.type("net.minecraft.network.protocol.game.ServerboundUseItemPacket")
+const Minecraft = Java.type("net.minecraft.client.Minecraft");
+const AbstractContainerScreen = Java.type("net.minecraft.client.gui.screens.inventory.AbstractContainerScreen");
 
 export const swapToItem = (targetItemName) => {
     const itemSlot = Player?.getInventory()?.getItems()?.findIndex(item => { return item?.getName()?.toLowerCase()?.includes(targetItemName.toLowerCase()) })
@@ -17,9 +19,7 @@ export function p(text) {
     ChatLib.command("ct simulate [Eversince] " + text)}
 
 export function swinghand() {
-const player = Player.getPlayer()
-const Hand = Java.type("net.minecraft.class_1268")
-player.method_6104(Hand.field_5808);
+Player.getPlayer().swing(InteractionHand.MAIN_HAND)
 }
 
 export function debugp(m) {
@@ -28,13 +28,12 @@ ChatLib.chat("&7[&cDEBUG&7]&f " + m)}
 
 export function rightClick() {
 const mc = Client.getMinecraft();
-const Hand1 = Java.type("net.minecraft.class_1268");
-mc.field_1761.method_2919(mc.field_1724, Hand1.field_5808);
+mc.gameMode.useItem(mc.player, InteractionHand.MAIN_HAND);
 debugp("attempting to invoke mouse")}
 
 export function rotate(y, p) {
-Player.getPlayer().setYaw(y)
-Player.getPlayer().setPitch(p)
+Player.getPlayer().setYRot(y)
+Player.getPlayer().setXRot(p)
 }
 
 
@@ -52,88 +51,33 @@ export const getDistance3D = (x1, y1, z1, x2, y2, z2) => Math.sqrt((x2-x1)**2 + 
  
 export function senduseitem() {
 sequence = 0
-const hand_yuritil = Java.type("net.minecraft.class_1268")
-const mainhand = hand_yuritil.MAIN_HAND
-const c08tosend = new PlayerInteractItemC2SPacket(mainhand, sequence, Player.getPlayer().getYaw(), Player.getPlayer().getPitch())
+const c08tosend = new ServerboundUseItemPacket(InteractionHand.MAIN_HAND, sequence, Player.getPlayer().getYRot(), Player.getPlayer().getXRot())
 Client.sendPacket(c08tosend)}
 
 export function senduseat(yaw, pitch) {
 sequence = 0
-const hand_yuritil = Java.type("net.minecraft.class_1268")
-const mainhand = hand_yuritil.MAIN_HAND
-const c08tosend = new PlayerInteractItemC2SPacket(mainhand, sequence, yaw, pitch)
+const c08tosend = new ServerboundUseItemPacket(InteractionHand.MAIN_HAND, sequence, yaw, pitch)
 Client.sendPacket(c08tosend)
 }
 
 
 // ----- Walk forward functions -----
 
-let forwardKey = null; // Store the keybind object for reuse
-
 function getForwardKey() {
-    if (forwardKey) return forwardKey;
-
-    const mc = Client.getMinecraft();
-    if (!mc || !mc.options) {
-        console.error("❌ Cannot access Minecraft options");
-        return null;
-    }
-
-    // Try common Yarn field names for the forward key
-    forwardKey = mc.options.forwardKey || mc.options.keyForward || mc.options.forward;
-
-    if (!forwardKey) {
-        console.warn("⚠️ Forward key not found. Available options fields:", Object.keys(mc.options));
-        return null;
-    }
-
-    return forwardKey;
+    return Client.getMinecraft().options.keyUp;
 }
 
 export function walk() {
-    const key = getForwardKey();
-    if (!key) return;
-
-    // Press the key
-    if (typeof key.setPressed === "function") {
-        key.setPressed(true);
-    } else if (typeof key.setState === "function") {
-        key.setState(true);
-    } else {
-    }
+    getForwardKey().setDown(true);
 }
 
 export function nowalk() {
-    const key = getForwardKey();
-    if (!key) return;
-
-    if (typeof key.setPressed === "function") {
-        key.setPressed(false);
-    } else if (typeof key.setState === "function") {
-        key.setState(false);
-    }
+    getForwardKey().setDown(false);
 }
 
 export function unhandlekeys() {
-    const mc = Client.getMinecraft();
-    if (!mc || !mc.options) return;
-
-    const movementKeys = [
-        mc.options.forwardKey, mc.options.keyForward, mc.options.forward,
-        mc.options.backKey, mc.options.keyBack, mc.options.back,
-        mc.options.leftKey, mc.options.keyLeft, mc.options.left,
-        mc.options.rightKey, mc.options.keyRight, mc.options.right,
-        mc.options.jumpKey, mc.options.keyJump, mc.options.jump,
-        mc.options.sneakKey, mc.options.keySneak, mc.options.sneak,
-        mc.options.sprintKey, mc.options.keySprint, mc.options.sprint
-    ];
-
-    movementKeys.forEach(key => {
-        if (key) {
-            if (typeof key.setPressed === "function") key.setPressed(false);
-            else if (typeof key.setState === "function") key.setState(false);
-        }
-    });
+    const o = Client.getMinecraft().options;
+    [o.keyUp, o.keyDown, o.keyLeft, o.keyRight, o.keyJump, o.keyShift, o.keySprint].forEach(key => key.setDown(false));
 }
 
 export function walkfor(ticks) {
@@ -145,7 +89,7 @@ const mc = Client.getMinecraft()
 
 export const edgeJump = register("renderOverlay", () => {
     let ID = World.getBlockAt(Player.getX(), Player.getY() - 0.05, Player.getZ()).type.getID()
-    if (ID == 0 && Player.getPlayer().isOnGround) {
+    if (ID == 0 && Player.getPlayer().onGround()) {
         Jump()
         edgeJump.unregister()
     }
@@ -176,18 +120,12 @@ senduseitem()
 if(!Player.isSneaking())
 swinghand()}
 
-const MinecraftClient = Java.type("net.minecraft.client.MinecraftClient");
-const HandledScreen = Java.type("net.minecraft.client.gui.screen.ingame.HandledScreen");
-
 export function guiOpen() {
-    const screen = MinecraftClient.getInstance().currentScreen;
-    return screen !== null && screen instanceof HandledScreen;
+    return Minecraft.getInstance().screen instanceof AbstractContainerScreen;
 }
 
 export function doItemUse() {
-    const clientClass = Java.type("net.minecraft.class_310");  // adjust mapping if needed
-    const mc = clientClass.getInstance();
-    const method = clientClass.class.getDeclaredMethod("method_1583");
+    const method = Minecraft.class.getDeclaredMethod("startUseItem");
     method.setAccessible(true);
-    method.invoke(mc);
+    method.invoke(Minecraft.getInstance());
 }
