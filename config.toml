@@ -1,5 +1,6 @@
 
 [general]
+	y_offset_playerhider_in_dungeons = true
 	spinbot = false
 	"chat_bypass(font_chat)" = false
 	simulate_lavabounce = false
@@ -34,7 +35,9 @@
 	500_speed_simulation = true
 
 [dungeons]
+	y_offset_playerhider_in_dungeons = true
 	auto_icefill_walker = true
+	hide_players_range_value = 3
 
 	[dungeons.db_nuker]
 		dungeonbreaker_nuker = false
@@ -43,6 +46,9 @@
 		remove_block_clientside = false
 		dungeonbreaker_autoswap = false
 		dungeonbreaker_nuker_render = false
+
+	[dungeons.hideplayers]
+		hide_players_range_value = 3.0
 
 [misc]
 	small_caps_chat = true

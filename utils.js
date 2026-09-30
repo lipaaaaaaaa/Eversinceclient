@@ -1,4 +1,6 @@
 import Settings from "./config";
+export function p(text) {ChatLib.chat("[Eversince] " + text)}
+
 const InteractionHand = Java.type("net.minecraft.world.InteractionHand");
 const ServerboundUseItemPacket = Java.type("net.minecraft.network.protocol.game.ServerboundUseItemPacket")
 const Minecraft = Java.type("net.minecraft.client.Minecraft");
@@ -15,8 +17,6 @@ export const swapToItem = (targetItemName) => {
         Player.setHeldItemIndex(itemSlot)
     }
 }
-export function p(text) {
-    ChatLib.command("ct simulate [Eversince] " + text)}
 
 export function swinghand() {
 Player.getPlayer().swing(InteractionHand.MAIN_HAND)
@@ -24,7 +24,7 @@ Player.getPlayer().swing(InteractionHand.MAIN_HAND)
 
 export function debugp(m) {
 if (!Settings.debugmsg) return
-ChatLib.chat("&7[&cDEBUG&7]&f " + m)}
+ChatLib.chat("§7[§cDEBUG§7]§f " + m)}
 
 export function rightClick() {
 const mc = Client.getMinecraft();

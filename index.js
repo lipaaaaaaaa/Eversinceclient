@@ -12,6 +12,7 @@ import "./features/stopring"
 import "./features/spin"
 import "./features/trapper"
 import "./features/smallcaps"
+import "./features/hideplayers"
 import "./features/cc"
 /*import "./IceFill"
 import "./features/sim"*/

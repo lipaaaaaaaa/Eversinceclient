@@ -2,7 +2,7 @@ import { @Vigilant, @TextProperty, @NumberProperty, @SwitchProperty, @SelectorPr
 
 @Vigilant("Eversinceclient", "Eversince", {
 	getCategoryComparator: () => (a, b) => {
-		const categories = ["Main", "AutoRoutes", "P3", "Dungeons", "P5", "Sim", "Misc"];
+		const categories = ["Main", "P3", "Dungeons", "Misc"];
 		return categories.indexOf(a.name) - categories.indexOf(b.name);
 	}
 })
@@ -32,6 +32,19 @@ class Settings {
 	@SwitchProperty({name: "Chat cleaner",
 	description: "Chat cleaner",
 	category: "General"}) chatclean = false;
+
+	@SwitchProperty({name: "Y offset Playerhider in dungeons",
+	description: "Click through hide players",
+	category: "Dungeons"}) hideplayers = false;
+
+    @SliderProperty({
+        name: "Hide players range value",
+        description: "Hide players range",
+        category: "Dungeons",
+        min: 1,
+        max: 10
+    })
+    hprval = 3
 
 /*
     @SliderProperty({
