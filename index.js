@@ -14,6 +14,8 @@ import "./features/trapper"
 import "./features/smallcaps"
 import "./features/hideplayers"
 import "./features/cc"
+import "./features/ms3"
+import "./features/DbTb"
 /*import "./IceFill"
 import "./features/sim"*/
 

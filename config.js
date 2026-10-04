@@ -33,9 +33,17 @@ class Settings {
 	description: "Chat cleaner",
 	category: "General"}) chatclean = false;
 
+	@SwitchProperty({name: "Milestone 3 helper",
+	description: "renders that you are milestone 3 and theres a chat message",
+	category: "Dungeons"}) ms3an = false;
+
 	@SwitchProperty({name: "Y offset Playerhider in dungeons",
 	description: "Click through hide players",
 	category: "Dungeons"}) hideplayers = false;
+
+	@SwitchProperty({name: "Dungeonbreaker triggerbot",
+	description: "f7 boss db triggerbot",
+	category: "Dungeons"}) dbtb = false;
 
     @SliderProperty({
         name: "Hide players range value",

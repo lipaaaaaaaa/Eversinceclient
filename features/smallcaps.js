@@ -1,11 +1,5 @@
-// smallcaps.js — ChatTriggers 3.0 (Fabric 1.21.10)
-// Toggled by Settings.smallcapschat ("Small Caps Chat" in Misc).
-// When on, any plain chat message you send is cancelled and re-sent with the
-// latin alphabet replaced by fullwidth glyphs. Commands (/...) are left
-// alone so they don't get mangled.
-
 import Settings from "../config"
-import { debugp } from "../utils"
+import { debugp, p } from "../utils"
 
 const smallCapsMap = {
     'a': 'ａ', 'b': 'ｂ', 'c': 'ｃ', 'd': 'ｄ', 'e': 'ｅ',
@@ -15,23 +9,18 @@ const smallCapsMap = {
     'u': 'ｕ', 'v': 'ｖ', 'w': 'ｗ', 'x': 'ｘ', 'y': 'ｙ', 'z': 'ｚ'
 };
 
-/**
- * Converts standard English letters in a string to fullwidth characters.
- * @param {string} text The input string to convert.
- * @returns {string} The formatted string.
- */
 function toSmallCaps(text) {
     return text.replace(/[a-z]/gi, char => smallCapsMap[char.toLowerCase()] || char);
 }
 
-let resending = false // guard so our own re-send doesn't get intercepted again
+let resending = false 
 
 register("messageSent", (message, event) => {
     if (!Settings.smallcapschat || resending) return
-    if (message.startsWith("/")) return // never touch commands
+    if (message.startsWith("/")) return 
 
     const converted = toSmallCaps(message)
-    if (converted === message) return // no latin letters, let vanilla send it
+    if (converted === message) return 
 
     cancel(event)
 
@@ -46,5 +35,10 @@ register("messageSent", (message, event) => {
         resending = false
     }
 })
+
+register("command", () => {
+    Settings.smallcapschat = !Settings.smallcapschat
+    p(`Chat bypass: ${Settings.smallcapschat ? "ON" : "OFF"}`)
+}).setName("chatbypasstoggle").setAliases("cbt")
 
 export { toSmallCaps }

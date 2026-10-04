@@ -6,6 +6,7 @@
 	simulate_lavabounce = false
 	simulate_speed = true
 	chat_cleaner = true
+	milestone_3_helper = true
 
 [p3]
 	p3_messages = true
@@ -36,7 +37,9 @@
 
 [dungeons]
 	y_offset_playerhider_in_dungeons = true
+	dungeonbreaker_triggerbot = false
 	auto_icefill_walker = true
+	milestone_3_helper = true
 	hide_players_range_value = 3
 
 	[dungeons.db_nuker]
