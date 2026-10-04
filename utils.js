@@ -24,7 +24,7 @@ Player.getPlayer().swing(InteractionHand.MAIN_HAND)
 
 export function debugp(m) {
 if (!Settings.debugmsg) return
-ChatLib.chat("§7[§cDEBUG§7]§f " + m)}
+ChatLib.chat("[DEBUG] " + m)}
 
 export function rightClick() {
 const mc = Client.getMinecraft();

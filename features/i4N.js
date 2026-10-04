@@ -3,7 +3,7 @@ import Vector3 from "../Vector3";
 import packetBlockChange from "../events/packetBlockChange";
 import packetMultiBlockChange from "../events/packetMultiBlockChange";
 import { startSmoothRotation, isRotating, cancelRotation } from "../events/Rotations";
-import { rightClick } from "../utils";
+import { rightClick, debugp } from "../utils";
 
 function getPlayerEyeCoords() {
     const player = Player.getPlayer();
@@ -12,6 +12,7 @@ function getPlayerEyeCoords() {
 
 // Mojmap: net.minecraft.world.level.block.Blocks
 const Blocks = Java.type("net.minecraft.world.level.block.Blocks");
+const McBlockPos = Java.type("net.minecraft.core.BlockPos");
 
 // Mojmap: net.minecraft.network.protocol.game.ServerboundMovePlayerPacket
 const PlayerMoveC2SPacket = Java.type("net.minecraft.network.protocol.game.ServerboundMovePlayerPacket");
@@ -26,46 +27,31 @@ const blocks = [
 const ROT_BASE_MS = Number(Settings.i4minrottime);   // 150
 const ROT_CAP_MS  = Number(Settings.i4rottimevar);    // 50
 
+// Hit blocks (blue terracotta), tracked from block packets
 const done = [];
-let currentTarget = null;
-let predicting = false;
-let lastTargetIndex = -1;
+
+// What we are aiming at or shooting at right now, null when idle:
+// { index, emerald, aiming, aimed, tries }
+let target = null;
+let lastShotTime = 0;
+let lastEmeraldTime = 0;
 
 // Phase / device state
 let p3Active = false;
 let deviceDone = false;
 let auto4Enabled = false;
 let prefireWaiting = false;
+let prefireSpamming = false;
 
-// ---------- Shot scheduling ----------
-let emeraldQueued = false;
-let shotCountdown = 0;
 let gameTick = 0;
 let swapLockEndTick = 0;
 
 register("tick", () => {
     gameTick++;
     if (gameTick < swapLockEndTick) return;
-    if (shotCountdown <= 0) return;
-
-    shotCountdown--;
-    if (shotCountdown === 0) {
-        // If target became done while countdown was active, abort
-        if (lastTargetIndex >= 0 && done.includes(lastTargetIndex)) {
-            lastTargetIndex = -1;
-            if (emeraldQueued) emeraldQueued = false;
-            if (!emeraldQueued && done.length < blocks.length) predictNext(currentTarget);
-            return;
-        }
-        // Fire immediately, trajectory was already checked before countdown
+    if (prefireSpamming && Date.now() - lastShotTime >= getShotCooldownMs()) {
+        lastShotTime = Date.now();
         rightClick();
-        lastTargetIndex = -1;
-        if (emeraldQueued) {
-            emeraldQueued = false;
-        }
-        if (!emeraldQueued && done.length < blocks.length) {
-            predictNext(currentTarget);
-        }
     }
 });
 
@@ -147,6 +133,17 @@ function segmentIntersectsAABB(p1, p2, minX, minY, minZ, maxX, maxY, maxZ) {
 }
 
 // ---------- Helpers ----------
+function getShotCooldownMs() {
+    const lore = Player.getHeldItem()?.getLore();
+    if (lore) {
+        for (let line of lore) {
+            const match = ChatLib.removeFormatting(String(line)).match(/Shot Cooldown: (\d+(?:\.\d+)?)s/);
+            if (match) return parseFloat(match[1]) * 1000;
+        }
+    }
+    return Number(Settings.i4shotcooldown) || 500;
+}
+
 function isOnPlate() {
     const x = Player.getX();
     const y = Player.getY();
@@ -168,14 +165,33 @@ function syncLookPacket() {
     }
 }
 
-function findEmeraldIndex() {
+// Reads the world directly so emeralds are caught even if a packet is missed
+function isEmeraldAt(index) {
+    const [x, y, z] = blocks[index];
+    return Client.getMinecraft().level.getBlockState(new McBlockPos(x, y, z)).is(Blocks.EMERALD_BLOCK);
+}
+
+function anyEmerald() {
+    return blocks.some((_, i) => isEmeraldAt(i));
+}
+
+// Last shot fired at each block: { time, count }. Keeps one emerald from being shot twice while the arrow lands
+const shotAt = {};
+
+function recentShot(index, ms) {
+    const shot = shotAt[index];
+    return shot && Date.now() - shot.time < ms ? shot : null;
+}
+
+function retryWaitMs() {
+    return Math.max(getShotCooldownMs(), Number(Settings.i4retrydelay) || 800);
+}
+
+// Emerald that is ready to be shot, -1 if none. One we already shot is left alone while the arrow lands
+function findEmerald() {
+    const wait = retryWaitMs();
     for (let i = 0; i < blocks.length; i++) {
-        if (done.includes(i)) continue;
-        const [x, y, z] = blocks[i];
-        const blockAt = World.getBlockAt(x, y, z);
-        if (blockAt === Blocks.EMERALD_BLOCK) {
-            return i;
-        }
+        if (isEmeraldAt(i) && !recentShot(i, wait)) return i;
     }
     return -1;
 }
@@ -188,14 +204,12 @@ const trigger = register("packetSent", (packet, event) => {
         const z = packet.getZ(Player.getZ());
         if (!(x > 61 && x < 65 && z > 34 && z < 37 && y >= 127 && y <= 128)) {
             while (done.length) done.pop();
-            currentTarget = null;
-            predicting = false;
-            lastTargetIndex = -1;
+            target = null;
         }
     }
 }).setFilteredClass(PlayerMoveC2SPacket).unregister();
 
-// ---------- Core solver ----------
+// ---------- Hit tracking ----------
 function onBlock(position, block) {
     if (!Settings.icant4) return;
     if (!isOnPlate()) return;
@@ -203,125 +217,9 @@ function onBlock(position, block) {
     const index = blocks.findIndex(xyz => position.every((coord, i) => coord === xyz[i]));
     if (index === -1) return;
 
-    if (block === Blocks.BLUE_TERRACOTTA) {
-        if (!done.includes(index)) {
-            done.push(index);
-        }
-        if (lastTargetIndex === index && !emeraldQueued) {
-            cancelRotation();
-            shotCountdown = 0;
-            lastTargetIndex = -1;
-            if (done.length < blocks.length && !predicting) predictNext(currentTarget);
-        }
-        if (currentTarget === index) {
-            currentTarget = null;
-            lastTargetIndex = -1;
-        }
-        if (currentTarget === null && done.length < blocks.length && !predicting) {
-            predictNext();
-        }
-        return;
+    if (block === Blocks.BLUE_TERRACOTTA && !done.includes(index)) {
+        done.push(index);
     }
-
-    if (block === Blocks.EMERALD_BLOCK) {
-        cancelRotation();
-        shotCountdown = 0;
-        predicting = false;
-        emeraldQueued = true;
-        currentTarget = index;
-        shootTargetEmerald(index, 0);
-        return;
-    }
-}
-
-function shootTargetEmerald(index, retryCount) {
-    if (!auto4Enabled) return;
-    if (done.includes(index)) {
-        emeraldQueued = false;
-        return;
-    }
-
-    if (index === lastTargetIndex && !isRotating()) {
-        if (!canHitBlock(index) && retryCount < 2) {
-            lastTargetIndex = -1;
-            shootTargetEmerald(index, retryCount + 1);
-            return;
-        }
-        shotCountdown = 1;
-        return;
-    }
-
-    const position = blocks[index];
-    const [yaw, pitch] = getYawPitch(position[0] + 0.5, position[1] + 1, position[2]);
-
-    const rotDuration = ROT_BASE_MS + Math.random() * ROT_CAP_MS;
-    lastTargetIndex = index;
-    startSmoothRotation(yaw, pitch, rotDuration, () => {
-        if (!auto4Enabled) return;
-        if (done.includes(index)) {
-            emeraldQueued = false;
-            return;
-        }
-        if (!canHitBlock(index) && retryCount < 2) {
-            shootTargetEmerald(index, retryCount + 1);
-            return;
-        }
-        syncLookPacket();
-        shotCountdown = 1;
-    }, false);
-}
-
-function shootTarget(index, retryCount) {
-    if (!auto4Enabled) return;
-    if (emeraldQueued) return;
-    if (done.includes(index)) {
-        if (done.length < blocks.length) predictNext(currentTarget);
-        return;
-    }
-
-    if (index === lastTargetIndex && !isRotating()) {
-        if (!canHitBlock(index) && retryCount < 2) {
-            lastTargetIndex = -1;
-            shootTarget(index, retryCount + 1);
-            return;
-        }
-        syncLookPacket();
-        shotCountdown = 2;
-        return;
-    }
-
-    const position = blocks[index];
-    const [yaw, pitch] = getYawPitch(position[0] + 0.5, position[1] + 1, position[2]);
-
-    const rotDuration = ROT_BASE_MS + Math.random() * ROT_CAP_MS;
-    lastTargetIndex = index;
-
-    startSmoothRotation(yaw, pitch, rotDuration, () => {
-        if (!auto4Enabled) return;
-        if (emeraldQueued) return;
-        if (done.includes(index)) {
-            if (done.length < blocks.length) predictNext(currentTarget);
-            return;
-        }
-        if (!canHitBlock(index) && retryCount < 2) {
-            shootTarget(index, retryCount + 1);
-            return;
-        }
-        syncLookPacket();
-        shotCountdown = 2;
-    }, false);
-}
-
-function predictNext(excludeIndex) {
-    if (!auto4Enabled) return;
-    if (emeraldQueued) return;
-
-    const unmarked = blocks.map((_, i) => i).filter(i => !done.includes(i) && i !== excludeIndex);
-    if (unmarked.length === 0) return;
-
-    const randomIndex = unmarked[Math.floor(Math.random() * unmarked.length)];
-    predicting = true;
-    shootTarget(randomIndex, 0);
 }
 
 function onBlocks(blocksData) {
@@ -330,13 +228,104 @@ function onBlocks(blocksData) {
     }
 }
 
+// ---------- Targeting ----------
+// Aim heights tried in turn when a block keeps getting missed, never above the block
+const AIM_Y_OFFSETS = [1, 0.7, 0.4];
+
+function setTarget(index, emerald) {
+    cancelRotation();
+    target = { index, emerald, aiming: false, aimed: false, tries: 0 };
+    debugp(`target ${index} (${emerald ? "emerald" : "prediction"})`);
+}
+
+function aim(t) {
+    const position = blocks[t.index];
+    const shot = recentShot(t.index, 3000);
+    const height = AIM_Y_OFFSETS[(shot ? shot.count : 0) % AIM_Y_OFFSETS.length];
+    const [yaw, pitch] = getYawPitch(position[0] + 0.5, position[1] + height, position[2]);
+
+    t.aiming = true;
+    t.aimed = false;
+    startSmoothRotation(yaw, pitch, ROT_BASE_MS + Math.random() * ROT_CAP_MS, () => {
+        t.aimed = true;
+    }, false);
+}
+
+function canPredict() {
+    if (!Settings.i4predict) return false;
+    if (prefireSpamming) return false;
+    if (done.length >= blocks.length) return false;
+    // No emerald change for 2s, stop predicting until one shows up
+    return Date.now() - lastEmeraldTime <= 2000;
+}
+
+function randomUnmarked() {
+    const wait = retryWaitMs();
+    const open = blocks.map((_, i) => i).filter(i => !done.includes(i) && !recentShot(i, wait));
+    return open.length ? open[Math.floor(Math.random() * open.length)] : -1;
+}
+
+// Runs every tick while auto4 is enabled and we are on the plate
+function runAuto4() {
+    if (anyEmerald()) {
+        lastEmeraldTime = Date.now();
+        prefireSpamming = false;
+    }
+
+    if (!Settings.icant4) return;
+    if (gameTick < swapLockEndTick) return;
+
+    // Drop a target that no longer needs shooting. The world is the truth for emeralds
+    if (target && (target.emerald ? !isEmeraldAt(target.index) : done.includes(target.index))) {
+        target = null;
+    }
+
+    // Emeralds always win. An unfired prediction is given up, an emerald target stays until it is shot
+    const emerald = findEmerald();
+    if (emerald !== -1 && !(target && target.emerald)) {
+        if (target && target.index === emerald) target.emerald = true;
+        else setTarget(emerald, true);
+    }
+
+    // No emerald to shoot (none up, or the arrow is still landing), predict where the next one spawns
+    if (!target && canPredict()) {
+        const index = randomUnmarked();
+        if (index !== -1) setTarget(index, false);
+    }
+    if (!target) return;
+
+    if (!target.aiming) aim(target);
+    if (!target.aimed) {
+        // Rotation got cancelled elsewhere, aim again next tick
+        if (!isRotating()) target.aiming = false;
+        return;
+    }
+
+    // Aim is off, re-aim a couple of times before shooting anyway
+    if (!canHitBlock(target.index) && target.tries < 2) {
+        target.tries++;
+        target.aiming = false;
+        return;
+    }
+
+    if (Date.now() - lastShotTime < getShotCooldownMs()) return;
+
+    syncLookPacket();
+    rightClick();
+
+    const now = Date.now();
+    const previous = recentShot(target.index, 3000);
+    lastShotTime = now;
+    shotAt[target.index] = { time: now, count: previous ? previous.count + 1 : 1 };
+    debugp(`fired at ${target.index} (${target.emerald ? "emerald" : "prediction"}, shot ${shotAt[target.index].count})`);
+    target = null;
+}
+
 function enable() {
-    currentTarget = null;
-    predicting = false;
-    lastTargetIndex = -1;
+    target = null;
     done.length = 0;
-    emeraldQueued = false;
-    shotCountdown = 0;
+    for (let key in shotAt) delete shotAt[key];
+    lastEmeraldTime = Date.now();
 
     packetBlockChange.addListener(onBlock);
     packetMultiBlockChange.addListener(onBlocks);
@@ -344,8 +333,8 @@ function enable() {
 }
 
 function disable() {
-    shotCountdown = 0;
-    emeraldQueued = false;
+    target = null;
+    prefireSpamming = false;
     packetBlockChange.removeListener(onBlock);
     packetMultiBlockChange.removeListener(onBlocks);
     trigger.unregister();
@@ -356,6 +345,7 @@ register("chat", () => {
     if (Settings.i4ignorephase) return;
     p3Active = true;
     deviceDone = false;
+    prefireSpamming = false;
     prefireWaiting = Settings.prefirestun && isOnPlate();
     if (prefireWaiting) {
         const [yaw, pitch] = getBlockYawPitch(80, 119, 40);
@@ -371,18 +361,18 @@ register("chat", () => {
     if (Settings.i4ignorephase) return;
     p3Active = false;
     prefireWaiting = false;
+    prefireSpamming = false;
     if (auto4Enabled) {
         disable();
         auto4Enabled = false;
     }
 }).setCriteria("The Core entrance is opening!");
 
-// Goldor spawns on phase 3 start, shoot the prefire once then let auto4 run
+// Goldor spawns on phase 3 start, spam the prefire every shot cooldown until the first emerald
 register("chat", () => {
     if (!prefireWaiting) return;
     prefireWaiting = false;
-    syncLookPacket();
-    rightClick();
+    prefireSpamming = true;
 }).setCriteria(/^\[BOSS\] Goldor: .*$/);
 
 register("chat", (player, message) => {
@@ -400,7 +390,7 @@ register("chat", (player, message) => {
     }
 }).setCriteria(/(\w+) completed a device! \((.*?)\)/);
 
-// ---------- Combined tick checker (plate + emerald safeguard) ----------
+// ---------- Combined tick checker (plate + auto4) ----------
 register("tick", () => {
     if (!p3Active && !Settings.i4ignorephase) return;
     if (prefireWaiting) return;
@@ -416,23 +406,7 @@ register("tick", () => {
         return;
     }
 
-    if (auto4Enabled && onPlate) {
-        const emeraldIdx = findEmeraldIndex();
-        if (emeraldIdx !== -1) {
-            // Only cancel if we are NOT already rotating towards this exact emerald
-            if (!emeraldQueued || currentTarget !== emeraldIdx) {
-                // If a rotation is already aiming at this emerald, let it finish
-                if (isRotating() && lastTargetIndex === emeraldIdx) return;
-
-                cancelRotation();
-                shotCountdown = 0;
-                predicting = false;
-                emeraldQueued = true;
-                currentTarget = emeraldIdx;
-                shootTargetEmerald(emeraldIdx, 0);
-            }
-        }
-    }
+    if (auto4Enabled && onPlate) runAuto4();
 });
 
 // ---------- Immunity swaps ----------

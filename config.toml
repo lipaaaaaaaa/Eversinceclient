@@ -10,7 +10,8 @@
 
 [p3]
 	p3_messages = true
-	i4_minimum_rotation_time = "150"
+	i4_minimum_rotation_time = "50"
+	i4_predictionss = true
 	s2_dev_big_levers = false
 	autop3_switch = false
 	auto4 = true
@@ -20,11 +21,12 @@
 	ring_greenness = "0"
 	terminal_open_triggerbot = true
 	p3_lever_aura = false
+	i4_shot_cooldown_hardcode = "200"
 	ring_radius = "1"
 	auto_i4_leap = false
 	ring_redness = "255"
 	"i4_rotation_time_variaton(minimum_rot_time_+_this_is_the_maximum,_it_can_get_any_time_between_those_2)" = "50"
-	prefire_goldor_for_stun = true
+	prefire_goldor_for_stun = false
 	auto_immunuity_swap = true
 
 [p5]
@@ -37,7 +39,7 @@
 	500_speed_simulation = true
 
 [dungeons]
-	y_offset_playerhider_in_dungeons = true
+	y_offset_playerhider_in_dungeons = false
 	dungeonbreaker_triggerbot = true
 	auto_icefill_walker = true
 	milestone_3_helper = true
@@ -57,8 +59,8 @@
 [misc]
 	small_caps_chat = true
 	spinbot = false
-	i4_debug = false
+	i4_debug = true
 	spin_speed = 252
 	"chat_bypass(font_chat)" = false
-	debug_messages = true
+	debug_messages = false
 
