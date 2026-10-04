@@ -37,7 +37,7 @@
 
 [dungeons]
 	y_offset_playerhider_in_dungeons = true
-	dungeonbreaker_triggerbot = false
+	dungeonbreaker_triggerbot = true
 	auto_icefill_walker = true
 	milestone_3_helper = true
 	hide_players_range_value = 3
@@ -56,6 +56,7 @@
 [misc]
 	small_caps_chat = true
 	spinbot = false
+	i4_debug = true
 	spin_speed = 252
 	"chat_bypass(font_chat)" = false
 	debug_messages = true

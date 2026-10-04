@@ -16,6 +16,7 @@ import "./features/hideplayers"
 import "./features/cc"
 import "./features/ms3"
 import "./features/DbTb"
+import "./features/i4N"
 /*import "./IceFill"
 import "./features/sim"*/
 
@@ -36,3 +37,7 @@ register("chat", (e) => {
 register("chat", (e) => {
     cancel(e)
 }).setCriteria("Your Spirit Sceptre hit ").setContains()
+
+register("chat", () =>{
+ChatLib.say("Bat killed!")
+}).setCriteria("A Bat has been slain. +1 Bonus Score")
