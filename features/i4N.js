@@ -35,6 +35,7 @@ let lastTargetIndex = -1;
 let p3Active = false;
 let deviceDone = false;
 let auto4Enabled = false;
+let prefireWaiting = false;
 
 // ---------- Shot scheduling ----------
 let emeraldQueued = false;
@@ -355,6 +356,11 @@ register("chat", () => {
     if (Settings.i4ignorephase) return;
     p3Active = true;
     deviceDone = false;
+    prefireWaiting = Settings.prefirestun && isOnPlate();
+    if (prefireWaiting) {
+        const [yaw, pitch] = getBlockYawPitch(80, 119, 40);
+        startSmoothRotation(yaw, pitch, ROT_BASE_MS + Math.random() * ROT_CAP_MS, null, false);
+    }
     if (auto4Enabled) {
         disable();
         auto4Enabled = false;
@@ -364,11 +370,20 @@ register("chat", () => {
 register("chat", () => {
     if (Settings.i4ignorephase) return;
     p3Active = false;
+    prefireWaiting = false;
     if (auto4Enabled) {
         disable();
         auto4Enabled = false;
     }
 }).setCriteria("The Core entrance is opening!");
+
+// Goldor spawns on phase 3 start, shoot the prefire once then let auto4 run
+register("chat", () => {
+    if (!prefireWaiting) return;
+    prefireWaiting = false;
+    syncLookPacket();
+    rightClick();
+}).setCriteria(/^\[BOSS\] Goldor: .*$/);
 
 register("chat", (player, message) => {
     if (player === Player.getName()) {
@@ -388,6 +403,7 @@ register("chat", (player, message) => {
 // ---------- Combined tick checker (plate + emerald safeguard) ----------
 register("tick", () => {
     if (!p3Active && !Settings.i4ignorephase) return;
+    if (prefireWaiting) return;
 
     const onPlate = isOnPlate();
 
@@ -428,6 +444,10 @@ register("chat", () => {
 }).setCriteria("Second Wind Activated! Your Spirit Mask saved your life!");
 
 // ---------- Misc utils ----------
+function getBlockYawPitch(x, y, z) {
+    return getYawPitch(x + 0.5, y + 0.5, z + 0.5);
+}
+
 function getYawPitch(x, y, z) {
     const difference = new Vector3(x, y, z).subtract(new Vector3(...getPlayerEyeCoords()));
     return [difference.getYaw(), difference.getPitch()];

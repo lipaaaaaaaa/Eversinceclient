@@ -50,6 +50,11 @@ class Settings {
 	subcategory: "",
 	category: "P3"}) icant4 = false;
 
+	@SwitchProperty({name: "Prefire Goldor for stun",
+	description: "	",
+	subcategory: "",
+	category: "P3"}) prefirestun = false;
+
 	@SwitchProperty({name: "I4 Debug",
 	description: "",
 	subcategory: "",

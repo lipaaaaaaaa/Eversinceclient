@@ -10,7 +10,7 @@
 
 [p3]
 	p3_messages = true
-	i4_minimum_rotation_time = "120"
+	i4_minimum_rotation_time = "150"
 	s2_dev_big_levers = false
 	autop3_switch = false
 	auto4 = true
@@ -24,6 +24,7 @@
 	auto_i4_leap = false
 	ring_redness = "255"
 	"i4_rotation_time_variaton(minimum_rot_time_+_this_is_the_maximum,_it_can_get_any_time_between_those_2)" = "50"
+	prefire_goldor_for_stun = true
 	auto_immunuity_swap = true
 
 [p5]
@@ -56,7 +57,7 @@
 [misc]
 	small_caps_chat = true
 	spinbot = false
-	i4_debug = true
+	i4_debug = false
 	spin_speed = 252
 	"chat_bypass(font_chat)" = false
 	debug_messages = true
