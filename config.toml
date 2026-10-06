@@ -11,10 +11,10 @@
 [p3]
 	p3_messages = true
 	i4_minimum_rotation_time = "50"
-	i4_predictionss = true
+	i4_predictionss = false
 	s2_dev_big_levers = false
 	autop3_switch = false
-	auto4 = true
+	auto4 = false
 	icant4 = true
 	ring_blueness = "255"
 	default_p3_config = "rndstops"
@@ -39,7 +39,7 @@
 	500_speed_simulation = true
 
 [dungeons]
-	y_offset_playerhider_in_dungeons = false
+	y_offset_playerhider_in_dungeons = true
 	dungeonbreaker_triggerbot = true
 	auto_icefill_walker = true
 	milestone_3_helper = true
@@ -59,7 +59,7 @@
 [misc]
 	small_caps_chat = true
 	spinbot = false
-	i4_debug = true
+	i4_debug = false
 	spin_speed = 252
 	"chat_bypass(font_chat)" = false
 	debug_messages = false
