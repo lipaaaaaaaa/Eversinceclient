@@ -120,3 +120,8 @@ msg.forEach(regex => {
         cancel(e)
     }).setCriteria(regex)
 })
+
+register("chat", (e) => {
+  if (!Settings.chatclean) return
+    cancel(e)
+}).setCriteria("Your Spirit Sceptre hit ").setContains()

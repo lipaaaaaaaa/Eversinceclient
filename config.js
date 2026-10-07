@@ -45,47 +45,6 @@ class Settings {
 	description: "f7 boss db triggerbot",
 	category: "Dungeons"}) dbtb = false;
 
-	@SwitchProperty({name: "Auto4",
-	description: "Spec legit auto4(no silent anymore, i can send old file if u want rto replace)",
-	subcategory: "",
-	category: "P3"}) icant4 = false;
-
-	@SwitchProperty({name: "I4 predictionss",
-	description: "",
-	subcategory: "",
-	category: "P3"}) i4predict = false;
-
-	@SwitchProperty({name: "Prefire Goldor for stun",
-	description: "	",
-	subcategory: "",
-	category: "P3"}) prefirestun = false;
-
-	@SwitchProperty({name: "I4 Debug",
-	description: "",
-	subcategory: "",
-	category: "Misc"}) i4ignorephase = false;
-
-	@TextProperty({
-	name: "I4 Shot cooldown hardcode",
-	description: "if youre on like p3sim and the lore line of shot cooldown isnt detected set it to: (ms) 500ms slowest(750 with spirit shortbow) 200 fastest(ithink) with 100ats",
-	category: "P3"
-	})
-	i4shotcooldown = "500";
-
-	@TextProperty({
-	name: "I4 Minimum rotation time",
-	description: "",
-	category: "P3"
-	})
-	i4minrottime = "150";
-
-	@TextProperty({
-	name: "I4 rotation time variaton(minimum rot time + this is the maximum, it can get any time between those 2)",
-	description: "",
-	category: "P3"
-	})
-	i4rottimevar = "50";
-
     @SliderProperty({
         name: "Hide players range value",
         description: "Hide players range",
