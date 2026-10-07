@@ -2,7 +2,7 @@ const MODULE = "Eversinceclient"
 const DATA_URL = "https://raw.githubusercontent.com/lipaaaaaaaa/JSONDATA/main/V0w%3D.json"
 const CACHE = "dodgelist_cache.json"
 const LOCAL = "dodgelist_local.json"
-const USAGE = "/dlist <check|add|remove> <ign> or /dlist reload"
+const USAGE = "/dlist <check> <ign> or /dlist reload"
 
 const HttpClient = Java.type("java.net.http.HttpClient")
 const HttpRequest = Java.type("java.net.http.HttpRequest")
@@ -10,6 +10,11 @@ const BodyHandlers = Java.type("java.net.http.HttpResponse$BodyHandlers")
 const URI = Java.type("java.net.URI")
 const JThread = Java.type("java.lang.Thread")
 const http = HttpClient.newHttpClient()
+
+const mc = Java.type("net.minecraft.client.Minecraft").getInstance()
+const Component = Java.type("net.minecraft.network.chat.Component")
+const Style = Java.type("net.minecraft.network.chat.Style")
+const RunCommand = Java.type("net.minecraft.network.chat.ClickEvent$RunCommand")
 
 let remote = new Set()
 let local = new Set()
@@ -60,11 +65,22 @@ function refresh(verbose) {
   })
 }
 
+function button(label, command) {
+  const style = Style.EMPTY.withClickEvent(new RunCommand(command))
+  mc.gui.getChat().addClientSystemMessage(Component.literal(label).withStyle(style))
+}
+
+function warn(ign) {
+  ChatLib.chat(ign + " is on the dodgelist")
+  button("[Ignore " + ign + "]", "/ignore add " + ign)
+  button("[Kick " + ign + "]", "/party kick " + ign)
+}
+
 function check(ign, quietIfClean) {
   run(() => {
     const uuid = lookup(ign)
     if (!uuid) return ChatLib.chat("Unknown player: " + ign)
-    if (remote.has(uuid) || local.has(uuid)) return ChatLib.chat(ign + " is on the dodgelist")
+    if (remote.has(uuid) || local.has(uuid)) return warn(ign)
     if (!quietIfClean) ChatLib.chat(ign + " is clean")
   })
 }
@@ -84,14 +100,21 @@ register("command", (sub, ign) => {
   if (sub === "reload") return refresh(true)
   if (!ign || !/^\w{1,16}$/.test(ign)) return ChatLib.chat(USAGE)
   if (sub === "check") return check(ign, false)
-  if (sub === "add") return edit(ign, true)
-  if (sub === "remove") return edit(ign, false)
   ChatLib.chat(USAGE)
 }).setName("dlist")
 
-register("chat", (who) => {
-  check(who.split(" ").pop(), true)
-}).setCriteria("${who} joined the party.")
+register("chat", (event) => {
+  const m = event.message.getString().match(/(\w+) joined the party\./)
+  if (!m) return
+  check(m[1], true)
+}).setCriteria("joined the party.").setContains()
+
+// Party Finder > ign joined the dungeon group! (Class Level 67)
+register("chat", (event) => {
+  const m = event.message.getString().match(/Party Finder > (\w+) joined the dungeon group!/)
+  if (!m) return
+  check(m[1], false)
+}).setCriteria("joined the dungeon group!").setContains()
 
 local = load(LOCAL)
 remote = load(CACHE)
@@ -101,6 +124,7 @@ register("command", (ign) => {
   if (!ign || !/^\w{1,16}$/.test(ign)) return ChatLib.chat("/uuidfromign <ign>")
   run(() => {
     const uuid = lookup(ign)
-    ChatLib.chat(uuid ? ign + ": " + uuid : "Unknown player: " + ign)
+    ChatLib.chat(uuid ? ign + ": " : "Unknown player: " + ign)
+    ChatLib.chat(uuid)
   })
 }).setName("uuidfromign")
