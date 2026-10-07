@@ -41,9 +41,13 @@ class Settings {
 	description: "Click through hide players",
 	category: "Dungeons"}) hideplayers = false;
 
+	@SwitchProperty({name: "P3 lever triggerbot",
+	description: "f7 boss lever triggerbot",
+	category: "P3"}) levtb = false;
+
 	@SwitchProperty({name: "Dungeonbreaker triggerbot",
 	description: "f7 boss db triggerbot",
-	category: "Dungeons"}) dbtb = false;
+	category: "P3"}) dbtb = false;
 
     @SliderProperty({
         name: "Hide players range value",

@@ -88,7 +88,6 @@ const msg = [
     /\[(?:Tank|Healer|Mage|Archer|Berserk)\] .+/,
     /\[SKULL\] .+/,
     /\[BOMB\] Creeper:.+/,
-    /\[Boss\].+/,
     /\[Sacks\] .+ item.+/,
     /The .+ Trap hit you for .+ damage!/,
     /\w+ Milestone .+:.+/,

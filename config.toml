@@ -12,11 +12,13 @@
 	p3_messages = true
 	i4_minimum_rotation_time = "50"
 	i4_predictionss = false
+	dungeonbreaker_triggerbot = true
 	s2_dev_big_levers = false
 	autop3_switch = false
 	auto4 = false
 	icant4 = true
 	ring_blueness = "255"
+	p3_lever_triggerbot = true
 	default_p3_config = "rndstops"
 	ring_greenness = "0"
 	terminal_open_triggerbot = true
@@ -42,6 +44,7 @@
 	y_offset_playerhider_in_dungeons = true
 	dungeonbreaker_triggerbot = true
 	auto_icefill_walker = true
+	p3_lever_triggerbot = false
 	milestone_3_helper = true
 	hide_players_range_value = 3
 

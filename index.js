@@ -14,8 +14,8 @@ import "./features/smallcaps"
 import "./features/hideplayers"
 import "./features/cc"
 import "./features/ms3"
-import "./features/AADG"
 import "./features/DbTb"
+import "./features/levp3tb"
 
 p("loaded")
 
@@ -35,8 +35,7 @@ register("chat", (e) => {
 cancel(e)
 }).setCriteria("Find out more here: www.hypixel.net/mutes")
 
-
-
 register("chat", (e) => {
 cancel(e)
-}).setCriteria("Mute ID: #01EC9447").setContains()
+}).setCriteria("Mute ID: # ").setContains()
+
