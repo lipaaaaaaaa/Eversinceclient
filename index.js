@@ -22,4 +22,21 @@ p("loaded")
 register("command", () => {
 Settings.openGUI()
 }).setName("eversincegtbsg").setAliases("eversince", "evs")
- 
+
+register("chat", (e) => {
+cancel(e)
+}).setCriteria("-----------------------------------------------------")
+
+register("chat", (e) => {
+cancel(e)
+}).setCriteria("Your mute will expire in ").setContains()
+
+register("chat", (e) => {
+cancel(e)
+}).setCriteria("Find out more here: www.hypixel.net/mutes")
+
+
+
+register("chat", (e) => {
+cancel(e)
+}).setCriteria("Mute ID: #01EC9447").setContains()
