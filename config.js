@@ -49,6 +49,10 @@ class Settings {
 	description: "f7 boss db triggerbot",
 	category: "P3"}) dbtb = false;
 
+    @SwitchProperty({name: "Text Overlay",
+    description: "Renders a movable text overlay (see /edithud). Shows your name plus the first matching zone box you are standing in, from data/overlay.json",
+    category: "Misc"}) textoverlay = false;
+
     @SliderProperty({
         name: "Hide players range value",
         description: "Hide players range",

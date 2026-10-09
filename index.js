@@ -16,6 +16,7 @@ import "./features/cc"
 import "./features/ms3"
 import "./features/DbTb"
 import "./features/levp3tb"
+import "./features/textoverlay"
 
 p("loaded")
 

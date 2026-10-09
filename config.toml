@@ -61,6 +61,7 @@
 
 [misc]
 	small_caps_chat = true
+	text_overlay = false
 	spinbot = false
 	i4_debug = false
 	spin_speed = 252
