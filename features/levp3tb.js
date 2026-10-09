@@ -1,6 +1,6 @@
 import Settings from "../config"
-import {senduseitem} from "../utils"
 const InteractionHand = Java.type("net.minecraft.world.InteractionHand")
+const KeyMapping = Java.type("net.minecraft.client.KeyMapping")
 
 const starts = [
     "[BOSS] Goldor: Don't think you can hide from me",
@@ -16,26 +16,50 @@ const levers = new Set()
 for (let i = 0; i < coords.length; i += 3) {levers.add(coords.slice(i,i + 3).join(","))}
 
 const clicked = new Set()
+let pressed = false
 
-function reset() {clicked.clear()}
+function reset(why) {
+    clicked.clear()
+   // ChatLib.chat("levtb reset: " + why)
+}
 
-register("tick",() => {
-    //if(!Settings.levtb) return
+// allowed: Set of "x,y,z" keys, or null for any block. done: Set of keys already clicked.
+// Queues a vanilla right click so the game sends it at the start of the next tick.
+function clickBlock(allowed, done) {
     const mc = Client.getMinecraft()
     const hit = mc.hitResult
-    if(!hit || hit.getType().toString() !== "BLOCK") return
+    if(!hit || hit.getType().toString() !== "BLOCK") return false
 
     const p = hit.getBlockPos()
     const key = p.getX() + "," + p.getY() + "," + p.getZ()
-    if(!levers.has(key) || clicked.has(key)) return
+    if((allowed && !allowed.has(key)) || done.has(key)) return false
 
-    clicked.add(key)
-    senduseitem()
-    mc.player.swing(InteractionHand.MAIN_HAND)
+    KeyMapping.click(mc.options.keyUse.getDefaultKey())
+    mc.options.keyUse.setDown(true)
+    pressed = true
+    done.add(key)
+    //ChatLib.chat("levtb click: " + key)
+    return true
+}
+
+register("tick",() => {
+    if(pressed) {
+        Client.getMinecraft().options.keyUse.setDown(false)
+        pressed = false
+    }
+    if(!Settings.levtb) return
+    clickBlock(levers, clicked)
 })
 
-register("chat",(msg) => {
-const text = ChatLib.removeFormatting(msg)
-if(starts.some((s) => text.includes(s))) {reset()}})
+register("command",() => {
+    ChatLib.chat(clickBlock(null, new Set()) ? "clicked" : "nothing clicked")
+}).setName("clickblocktest")
 
-register("worldUnload",() => {reset()})
+register("chat",(msg) => {
+    const text = ChatLib.removeFormatting(msg)
+    if(starts.some((s) => text.includes(s))) {reset("start message")}
+})
+
+register("worldUnload",() => {
+    reset("world unload")
+})

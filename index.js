@@ -37,5 +37,5 @@ cancel(e)
 
 register("chat", (e) => {
 cancel(e)
-}).setCriteria("Mute ID: # ").setContains()
+}).setCriteria("Mute ID: #").setContains()
 
