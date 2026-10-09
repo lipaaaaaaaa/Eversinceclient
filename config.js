@@ -51,7 +51,15 @@ class Settings {
 
     @SwitchProperty({name: "Text Overlay",
     description: "Renders a movable text overlay (see /edithud). Shows your name plus the first matching zone box you are standing in, from data/overlay.json",
-    category: "Misc"}) textoverlay = false;
+    category: "P3"}) textoverlay = false;
+
+    @SwitchProperty({name: "Main section overlay",
+    description: "Render Main section text Eg S2 > blablbalb",
+    category: "P3"}) textoverlayMain = false;
+
+ 	@SwitchProperty({name: "Sub section Overlay",
+    description: "Render Main section text Eg blablabla > High EE2",
+    category: "P3"}) textoverlaySub = false;
 
     @SliderProperty({
         name: "Hide players range value",

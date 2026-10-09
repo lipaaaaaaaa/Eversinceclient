@@ -16,16 +16,19 @@
 	s2_dev_big_levers = false
 	autop3_switch = false
 	auto4 = false
+	main_section_overlay = false
 	icant4 = true
 	ring_blueness = "255"
 	p3_lever_triggerbot = true
 	default_p3_config = "rndstops"
 	ring_greenness = "0"
+	text_overlay = false
 	terminal_open_triggerbot = true
 	p3_lever_aura = false
 	i4_shot_cooldown_hardcode = "200"
 	ring_radius = "1"
 	auto_i4_leap = false
+	sub_section_overlay = false
 	ring_redness = "255"
 	"i4_rotation_time_variaton(minimum_rot_time_+_this_is_the_maximum,_it_can_get_any_time_between_those_2)" = "50"
 	prefire_goldor_for_stun = false
@@ -61,10 +64,12 @@
 
 [misc]
 	small_caps_chat = true
-	text_overlay = false
+	text_overlay = true
 	spinbot = false
 	i4_debug = false
 	spin_speed = 252
 	"chat_bypass(font_chat)" = false
+	main_section_overlay = false
 	debug_messages = false
+	sub_section_overlay = true
 

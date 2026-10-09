@@ -1,8 +1,9 @@
 {
-  "x": 0,
-  "y": 0,
+  "x": 756,
+  "y": 430,
   "scale": 1,
   "shadow": true,
   "showBg": false,
-  "enabled": null
+  "enabled": null,
+  "otherDist": 80
 }
